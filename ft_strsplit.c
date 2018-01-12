@@ -12,102 +12,73 @@
 
 #include "libft.h"
 
-static	int		ft_word_number(char *str, char c)
+static	int		ft_word_len(char const *s, char c)
 {
-	int		nb_word;
-	int		in_word;
-
-	if (!*str)
-		return (0);
-	nb_word = 0;
-	in_word = 0;
-	while (*str)
-	{
-		if (*str != c && *str != '\0')
-		{
-			if (in_word == 0)
-			{
-				in_word = 1;
-				nb_word++;
-			}
-		}
-		else if (in_word == 1)
-			in_word = 0;
-		str++;
-	}
-	return (nb_word);
-}
-
-static	char	*ft_fill_tab(char *dest, char *str, char c)
-{
-	int		i;
+	int	i;
 
 	i = 0;
-	while (str[i] != c && str[i] != '\0')
-	{
-		dest[i] = str[i];
+	while (s[i] != '\0' && s[i] != c)
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }
 
-static	int		ft_size_str(char *str, char c)
+static	int		ft_count_word(char const *s, char c)
 {
-	int		nb;
 	int		i;
+	int		cpt;
 
 	i = 0;
-	nb = 0;
-	while (str[i] != '\0')
+	cpt = 0;
+	while (s[i] == c)
+		i++;
+	if (s[0] != c)
+		cpt++;
+	while (s[i] != '\0')
 	{
-		while (str[i] != c && str[i] != '\0')
-		{
-			i++;
-			nb++;
-		}
-		if (str[i] == c || str[i] == '\0')
-			return (nb);
+		if (s[i - 1] == c && s[i] != c)
+			cpt++;
 		i++;
 	}
-	return (nb);
+	return (cpt);
 }
 
-static	int		ft_var(int *w, char c, char ***tab, char *str)
+static	char	**ft_init(char const *s, int *i, int *j, char c)
 {
+	char	**str;
+
+	*i = 0;
+	*j = 0;
+	str = (char **)malloc(sizeof(char *) * (ft_count_word(s, c) + 1));
 	if (!str)
-		return (0);
-	*w = 0;
-	if (!(*tab = (char**)malloc(sizeof(char*) *
-					(ft_word_number((char*)str, c) + 1))))
-		return (0);
-	return (1);
+		return (NULL);
+	return (str);
 }
 
-char			**ft_strsplit(const char *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	int		w;
-	char	**tab;
 	int		i;
+	int		j;
+	int		k;
+	char	**str;
 
-	i = 0;
-	if (!ft_var(&w, c, &tab, (char*)s))
+	if (!s)
 		return (NULL);
-	while (w < ft_word_number((char*)s, c))
+	if ((str = ft_init(s, &i, &j, c)) == NULL)
+		return (NULL);
+	while (s[i] != '\0')
 	{
+		k = 0;
 		while (s[i] == c && s[i] != '\0')
 			i++;
-		if (s[i] != c && s[i] != '\0')
-		{
-			tab[w] = (char*)malloc(sizeof(char) * ft_size_str((char*)s + i, c));
-			tab[w] = ft_fill_tab(tab[w], (char*)s + i, c);
-			w++;
-			i++;
-		}
+		if (s[i] == '\0')
+			continue ;
+		str[j] = (char *)malloc(sizeof(char) * (ft_word_len(&s[i], c) + 1));
+		if (!str[j])
+			return (NULL);
 		while (s[i] != c && s[i] != '\0')
-			i++;
-		i++;
+			str[j][k++] = s[i++];
+		str[j++][k] = '\0';
 	}
-	tab[w] = 0;
-	return (tab);
+	str[j] = NULL;
+	return (str);
 }
