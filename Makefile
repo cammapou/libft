@@ -74,7 +74,8 @@ SRC =	ft_atoi.c \
 		ft_strndup.c\
 		ft_strrev.c\
 		ft_swap.c\
-		ft_create_elem.c
+		ft_create_elem.c\
+		ft_strdeljoin.c
 
 RM = @/bin/rm -f
 
