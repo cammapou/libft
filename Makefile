@@ -77,11 +77,14 @@ SRC =	ft_atoi.c \
 		ft_create_elem.c\
 		ft_strdeljoin.c
 
-RM = @/bin/rm -f
+RM = rm -f
 
 OBJ = $(SRC:.c=.o)
-
+C_OK = "\033[35m"
+C_NO = "\033[00m"
+C_GOOD = "\033[32m"
 FLAGS = -Wall -Wextra -Werror
+OK = $(C_OK)OK$(C_NO)
 
 all: $(NAME)
 
@@ -91,13 +94,15 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[32m[ 100% ] Compilation Done\033[0m"
+	@echo "\033[32m[ 100% ]\033[0m Compiling & indexing" [ $(NAME) ] $(OK)
 
 clean:
-	$(RM) *.o
-	@echo "\033[32m[ 100% ] Removed Objects Files\033[0m"
+	@$(RM) $(OBJ)
+	@echo "\033[32m[ Delete ]\033[0m [ objs ]" $(OK)
 
-fclean:clean
+fclean:
+	@$(RM) $(OBJ)
 	@$(RM) $(NAME)
+	@echo "\033[32m[ Delete ]\033[0m [ objs & $(NAME) ]" $(OK)
 
 re:fclean all
