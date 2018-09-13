@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cammapou <cammapou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:15:30 by cammapou          #+#    #+#             */
-/*   Updated: 2017/11/09 14:22:05 by cammapou         ###   ########.fr       */
+/*   Updated: 2018/08/29 17:28:32 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strcpy(char *dest, const char *src)
 {

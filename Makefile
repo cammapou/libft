@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cammapou <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cammapou <cammapou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/23 12:06:50 by cammapou          #+#    #+#              #
-#    Updated: 2017/11/24 11:10:24 by cammapou         ###   ########.fr        #
+#    Updated: 2018/08/29 15:13:43 by cammapou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,10 +75,15 @@ SRC =	ft_atoi.c \
 		ft_strrev.c\
 		ft_swap.c\
 		ft_create_elem.c\
-		ft_strdeljoin.c
+		ft_strdeljoin.c \
+		ft_lstrev.c \
+		ft_atoll.c \
+		ft_lstcount.c \
+		get_next_line.c \
+		ft_lstaddend.c \
+		ft_is_int.c
 
 RM = rm -f
-
 OBJ = $(SRC:.c=.o)
 C_OK = "\033[35m"
 C_NO = "\033[00m"
@@ -98,7 +103,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "\033[32m[ Delete ]\033[0m [ objs ]" $(OK)
+	@echo "\033[32m[ Delete ]\033[0m [ objs /libft ]" $(OK)
 
 fclean:
 	@$(RM) $(OBJ)

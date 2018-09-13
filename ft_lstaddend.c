@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cammapou <cammapou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2018/04/24 12:48:10 by cammapou          #+#    #+#             */
+/*   Updated: 2018/07/18 18:52:11 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdeljoin(char *s1, char *s2)
+void	ft_lstaddend(t_list **alst, t_list *new)
 {
-	char	*str;
+	t_list	*tmp;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	tmp = *alst;
+	if (alst && new)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }

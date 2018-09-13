@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_lst_count.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2017/11/10 14:15:41 by cammapou          #+#    #+#             */
+/*   Updated: 2017/11/15 16:29:37 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdeljoin(char *s1, char *s2)
+size_t		ft_lstcount(t_list *lst)
 {
-	char	*str;
+	size_t	count;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	count = 0;
+	if (lst == NULL)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
 }

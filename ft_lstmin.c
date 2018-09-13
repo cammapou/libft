@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_lstmin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cammapou <cammapou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2018/04/24 12:42:55 by cammapou          #+#    #+#             */
+/*   Updated: 2018/07/18 18:55:09 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-char		*ft_strdeljoin(char *s1, char *s2)
+int		ft_lstmin(t_list *lst)
 {
-	char	*str;
+	int	min;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	min = INT_MAX;
+	while (lst && lst->content)
+	{
+		if (((*(int*)lst->content) < min))
+			min = (*(int*)lst->content);
+		lst = lst->next;
+	}
+	return (min);
 }

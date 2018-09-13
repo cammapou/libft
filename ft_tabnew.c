@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_tabnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2017/11/23 10:53:20 by cammapou          #+#    #+#             */
+/*   Updated: 2018/08/23 12:38:39 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdeljoin(char *s1, char *s2)
+int			*ft_tabnew(size_t size)
 {
-	char	*str;
+	int		*str;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
+	if (!(str = (int*)malloc(sizeof(*str) * (size + 1))))
+		return (NULL);
+	ft_bzero(str, size + 1);
 	return (str);
 }

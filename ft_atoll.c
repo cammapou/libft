@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2018/07/17 16:20:54 by cammapou          #+#    #+#             */
+/*   Updated: 2018/07/17 16:22:55 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdeljoin(char *s1, char *s2)
+long long	ft_atoll(const char *str)
 {
-	char	*str;
+	long long int		i;
+	long long			res;
+	int					neg;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	i = 0;
+	res = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+		i++;
+	neg = i;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - 48);
+		i++;
+	}
+	if (str[neg] == '-')
+		return (-res);
+	return (res);
 }

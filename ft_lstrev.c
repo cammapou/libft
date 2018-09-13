@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdeljoin.c                                    :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cammapou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:23:40 by cammapou          #+#    #+#             */
-/*   Updated: 2018/06/14 12:03:45 by cammapou         ###   ########.fr       */
+/*   Created: 2018/06/14 12:03:00 by cammapou          #+#    #+#             */
+/*   Updated: 2018/06/14 12:03:05 by cammapou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strdeljoin(char *s1, char *s2)
+void		ft_lstrev(t_list **lst_a)
 {
-	char	*str;
+	t_list	*old_list;
+	t_list	*new_list;
+	t_list	*tmp;
 
-	str = ft_strjoin(s1, s2);
-	ft_strdel(&s1);
-	ft_strdel(&s2);
-	return (str);
+	old_list = *lst_a;
+	new_list = NULL;
+	while (old_list)
+	{
+		tmp = old_list->next;
+		old_list->next = NULL;
+		ft_lstadd(&new_list, old_list);
+		old_list = tmp;
+	}
+	*lst_a = new_list;
 }
